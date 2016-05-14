@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model){
-       model.addAttribute("title", "你大爷的");
+    public String printHello(Model model){
+
+        model.addAttribute("title", "helloworld");
+        model.addAttribute("content", "welcom to you!");
         return "index";
     }
 }
