@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by yanzi on 16/5/14.
@@ -25,5 +26,12 @@ public class MainController {
         model.addAttribute("name", name);
         model.addAttribute("age", age);
         return "name";
+    }
+
+    @RequestMapping(value="/result", method = RequestMethod.GET)
+    public String result(Model model, @RequestParam String name, @RequestParam int age){
+        model.addAttribute("name", name);
+        model.addAttribute("age", age);
+        return "result";
     }
 }
