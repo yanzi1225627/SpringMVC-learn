@@ -1,5 +1,6 @@
 package com.yanzi.controller;
 
+import com.yanzi.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,10 +29,19 @@ public class MainController {
         return "name";
     }
 
-    @RequestMapping(value="/result", method = RequestMethod.GET)
+    @RequestMapping(value="/result", method = RequestMethod.POST)
     public String result(Model model, @RequestParam String name, @RequestParam int age){
         model.addAttribute("name", name);
         model.addAttribute("age", age);
         return "result";
+    }
+
+    @RequestMapping(value = "adduser", method = RequestMethod.GET)
+    public String addUser(Model model){
+        User u = new User();
+        u.setAge(100);
+        u.setName("极客学院");
+        model.addAttribute(u);
+        return "add_user";
     }
 }
