@@ -2,6 +2,7 @@ package com.yanzi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,5 +18,12 @@ public class MainController {
         model.addAttribute("title", "helloworld");
         model.addAttribute("content", "welcom to you!");
         return "index";
+    }
+
+    @RequestMapping(value="/page/{name}/{age}", method = RequestMethod.GET)
+    public String getName(Model model, @PathVariable("name") String name, @PathVariable("age") int age){
+        model.addAttribute("name", name);
+        model.addAttribute("age", age);
+        return "name";
     }
 }
