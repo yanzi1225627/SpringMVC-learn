@@ -8,6 +8,9 @@
 <div>
     姓名:${name}<br/>
     年龄:${age}
+    <%
+        response.sendRedirect("users");
+    %>
 </div>
 </body>
 </html>
