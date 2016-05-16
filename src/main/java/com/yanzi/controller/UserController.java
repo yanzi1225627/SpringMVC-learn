@@ -3,9 +3,11 @@ package com.yanzi.controller;
 import com.yanzi.db.DbConnection;
 import com.yanzi.db.entities.UsersEntity;
 import com.yanzi.model.User;
+import com.yanzi.repository.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ import java.util.List;
  */
 @Controller
 public class UserController {
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String list(Model model){
@@ -50,6 +54,20 @@ public class UserController {
         session.save(ue);
         transaction.commit();
         session.close();
+//        addUserByJpa(name, age);
         return "result";
+    }
+
+    private void addUserByJpa(String name, int age){
+        UsersEntity ue = new UsersEntity();
+        ue.setName(name);
+        ue.setAge((byte)age);
+        userRepository.saveAndFlush(ue);
+    }
+    @RequestMapping(value = "/jpa/users", method = RequestMethod.GET)
+    public String jpaList(Model model){
+        List<UsersEntity> list = userRepository.findAll();
+        model.addAttribute("users", list);
+        return "users";
     }
 }
