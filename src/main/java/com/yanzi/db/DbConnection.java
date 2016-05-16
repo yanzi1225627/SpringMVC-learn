@@ -5,14 +5,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+
 
 /**
  * Created by yanzi on 16/5/15.
  */
 public class DbConnection {
-    private static final SessionFactory ourSessionFactory;
-    private static final ServiceRegistry serviceRegistry;
+    private static final SessionFactory ourSessionFactory ;
+    private static final org.hibernate.service.ServiceRegistry serviceRegistry;
 
     static {
         try {
